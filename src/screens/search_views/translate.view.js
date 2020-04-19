@@ -13,23 +13,27 @@ const TranslateView = () => {
     const {input_value, output_value} = useLanguageState();
 
     const [value, onChangeText] = useState("");
-    const [output, setOutput] = useState("Test");
+    const [output, setOutput] = useState("");
 
-
-    const request = (text) => {
+    //requests will be seperated later. They will not stay at a component
+    const request = (text, lang) => {
         return axios.get(
-        `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20200418T170345Z.bc1a7bbbbe797646.b3a4b85d9ec55c9b821be6462380cde319272af8&text=${text}&lang=${input_value}-${output_value}`,
+        `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20200418T170345Z.bc1a7bbbbe797646.b3a4b85d9ec55c9b821be6462380cde319272af8&text=${text}&lang=${lang || input_value}-${output_value}`,
         ).then(result => {
             setOutput(result.data.text[0])
         }).catch(e => {});
     };
-    const detectRequest = () => {
-
+    const detectRequest = (text) => {
+        return axios.get(
+        `https://translate.yandex.net/api/v1.5/tr.json/detect?key=trnsl.1.1.20200418T170345Z.bc1a7bbbbe797646.b3a4b85d9ec55c9b821be6462380cde319272af8&text=${text}`,
+        ).then(result => {
+            request(text, result.data.lang)
+        }).catch(e => {});
     }
     
     useEffect(() => {
         input_value !== "detect" ?
-        request(value) : detectRequest();
+        request(value) : detectRequest(value);
     }, [value, input_value, output_value])
 
     useEffect(() => {
@@ -92,6 +96,7 @@ const styles = StyleSheet.create({
     output: {
         fontSize: 24,
         paddingBottom: 48,
+        marginLeft: 4,
         width: "90%",
         color: darkPurple,
     },
