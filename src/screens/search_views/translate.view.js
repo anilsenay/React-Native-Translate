@@ -23,9 +23,13 @@ const TranslateView = () => {
             setOutput(result.data.text[0])
         }).catch(e => {});
     };
+    const detectRequest = () => {
 
+    }
+    
     useEffect(() => {
-        request(value)
+        input_value !== "detect" ?
+        request(value) : detectRequest();
     }, [value, input_value, output_value])
 
     useEffect(() => {
