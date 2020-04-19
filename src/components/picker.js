@@ -4,25 +4,34 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import Colors from '../consts/colors'
 import languages from '../consts/languages'
 
+import LanguagesHook from '../hooks/language.hook';
+
 const {lightPurple, textPurple} = Colors;
 
 const CustomPicker = (props) => {
 
-    const [language, setLanguage] = useState("Türkçe");
+    const {useLanguageState, changeInput, changeOutput} = LanguagesHook();
 
+    const {input_value, output_value} = useLanguageState();
+
+    const [language, setLanguage] = useState();
     const containerStyle = {...props.styles, ...styles.container}
+
     return (
         <View style={containerStyle}>
             <View style={styles.pickerContainer}>
                 <Picker
-                    selectedValue={language}
+                    selectedValue={props.type === "input" ? input_value : output_value}
                     style={styles.picker} 
                     onValueChange={(itemValue, itemIndex) =>
-                    setLanguage(itemValue)
+                    {
+                        props.type === "input" ? changeInput(itemValue) : changeOutput(itemValue)
+                    }
                     }>
 
                     {
                         languages.map(item => {
+                            if(props.type === "output" && item.value === "detect") return null;
                             return(
                                 <Picker.Item key={item.value} label={item.label} value={item.value} />
                             )

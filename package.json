@@ -9,7 +9,6 @@
     "test": "jest",
     "lint": "eslint .",
     "svgr": "svgr ./src/assets/images/home -d ./src/components/icons --native --icon --svg-props 'width=24,height=24'"
-
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.9",
@@ -17,6 +16,7 @@
     "@react-navigation/native": "^5.1.6",
     "@react-navigation/stack": "^5.2.11",
     "@svgr/core": "^5.3.1",
+    "axios": "^0.19.2",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-gesture-handler": "^1.6.1",

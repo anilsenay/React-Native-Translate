@@ -6,13 +6,14 @@ import Colors from '../../consts/colors'
 
 const {lightPurple} = Colors;
 
-const LanguageView = () => {
+const LanguageView = (props) => {
+
     return (
         <View style={styles.container}>
             <CustomPicker styles={{display: 'none'}}/>
-            <CustomPicker styles={styles.picker} defaultValue="Türkçe"/>
+            <CustomPicker styles={styles.picker} type="input"/>
             <ChangeButton/>
-            <CustomPicker styles={styles.picker2} defaultValue="İngilizce"/>
+            <CustomPicker styles={styles.picker2} type="output" />
         </View>
     )
 }
