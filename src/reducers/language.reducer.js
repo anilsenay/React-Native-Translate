@@ -1,8 +1,8 @@
 import React from 'react';
 
 const languagesInitialState = {
-    input_value = "tr",
-    output_value = "en",
+    input_value: "tr",
+    output_value: "en",
 }
 
 const languageReducer = (state, action) => {
@@ -11,12 +11,12 @@ const languageReducer = (state, action) => {
         case 'SET_INPUT':
             return {
                 ...state,
-                input_value: action.payload.input,
+                input_value: action.payload,
             };
         case 'SET_OUTPUT':
             return {
                 ...state,
-                output_value: action.payload.output,
+                output_value: action.payload,
             };
         default:
             return state;

@@ -12,6 +12,7 @@ const LanguageProvider = ({children}) => {
         languageReducer,
         languagesInitialState,
     );
+    console.log(languagesState)
 
     return (
         <LanguageContext.Provider
