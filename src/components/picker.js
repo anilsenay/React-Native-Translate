@@ -30,8 +30,7 @@ const CustomPicker = (props) => {
                     }>
 
                     {
-                        languages.map(item => {
-                            if(props.type === "output" && item.value === "detect") return null;
+                        languages.filter(item => item.value !== "detect" || props.type !== "output").map(item => {
                             return(
                                 <Picker.Item key={item.value} label={item.label} value={item.value} />
                             )
