@@ -7,23 +7,31 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "svgr": "svgr ./src/assets/images/home -d ./src/components/icons --native --icon --svg-props 'width=24,height=24'"
+
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.9",
+    "@react-native-community/picker": "^1.3.0",
     "@react-navigation/native": "^5.1.6",
     "@react-navigation/stack": "^5.2.11",
+    "@svgr/core": "^5.3.1",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-gesture-handler": "^1.6.1",
+    "react-native-material-dropdown": "^0.11.1",
     "react-native-reanimated": "^1.8.0",
     "react-native-safe-area-context": "^0.7.3",
-    "react-native-screens": "^2.5.0"
+    "react-native-screens": "^2.5.0",
+    "react-native-svg": "^12.1.0",
+    "react-native-svg-transformer": "^0.14.3"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",
     "@babel/runtime": "7.9.2",
     "@react-native-community/eslint-config": "0.0.5",
+    "@svgr/cli": "^5.3.1",
     "babel-jest": "24.9.0",
     "eslint": "6.8.0",
     "jest": "24.9.0",
