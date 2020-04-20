@@ -1,11 +1,23 @@
-import React, { useEffect } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import LoginButton from '../components/login_button'
 import { TextInput } from 'react-native-gesture-handler'
 import InputView from '../screens/login_views/input.view'
+import FlashMessage, {showMessage, hideMessage} from "react-native-flash-message";
 
 const Login = ({ route, navigation }) => {
-    console.log(route.params)
+    
+    
+
+    useEffect(() => {
+        if(route.params?.showPopUp){
+            showMessage({
+                message: "Account created! You can login now!",
+                type: "success",
+              });
+        }
+    }, [route.params])
+
 
     const loginEvent = () => {
         navigation.navigate('Search')
@@ -16,16 +28,19 @@ const Login = ({ route, navigation }) => {
 
     return (
         <View style={styles.container}>
+            <Image source={require('../assets/images/login/translate.png')} style={styles.image} resizeMode='contain'/>
             <InputView/>
             <LoginButton 
                 text="Login"
                 onClick={loginEvent}
                 reverse={false}
-                style={{marginBottom: 14, marginTop: 20}}/>
+                style={{marginBottom: 10}}/>
             <LoginButton 
                 text="Create new account" 
                 onClick={registerEvent}
-                reverse={true}/>
+                reverse={true}
+                style={{marginBottom: 20}}/>
+            <FlashMessage position="bottom" style={styles.popUp} titleStyle={{fontSize: 16}}/>
         </View>
     )
 }
@@ -35,7 +50,6 @@ const styles = StyleSheet.create({
       height: '100%',
       flex: 1,
       justifyContent: 'flex-start',
-      paddingTop: '50%',
       alignItems: 'center',
       backgroundColor: 'white',
     },
@@ -46,7 +60,14 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: '#A56FF8',
         marginBottom: 10,
-      },
+    },
+    image:{
+        flex:1,
+    },
+    popUp: {
+        alignItems: 'center', 
+        justifyContent: 'center'
+    }
 });
 
 export default Login

@@ -60,7 +60,7 @@ const TranslateView = () => {
             <View style={styles.line}/>
 
             <View style={styles.outputView}>
-                <Text style={styles.output}>{output || "Type Something"}</Text>
+                <Text style={styles.output}>{output || "Waiting your input..."}</Text>
             </View>
 
         </View>
