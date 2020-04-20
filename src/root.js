@@ -29,7 +29,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Search from './screens/search.screen';
-
+import Login from './screens/login.screen';
+import Register from './screens/register.screen';
 import Settings from './assets/images/navigation/settings.png'
 
 const Stack = createStackNavigator();
@@ -43,11 +44,18 @@ const options = {
   )
 }
 
+const loginOptions = {
+  headerShown: false
+}
+
 const Root = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Login" component={Login} options={ loginOptions }/>
+        <Stack.Screen name="Register" component={Register} options={ loginOptions }/>
         <Stack.Screen name="Search" component={Search} options={ options }/>
+
       </Stack.Navigator>
     </NavigationContainer>
   );
