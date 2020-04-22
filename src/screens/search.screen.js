@@ -6,10 +6,6 @@ import {LanguageContext, LanguageContextDispatch, LanguageProvider} from '../con
 
 const Search = () => {
 
-  const [inputLang, setInputLang] = useState("tr");
-  const [outputLang, setOutputLang] = useState("en");
-
-
   return (
     <LanguageProvider>
       <View style={styles.container}>

@@ -10,7 +10,6 @@ const LanguageView = (props) => {
 
     return (
         <View style={styles.container}>
-            <CustomPicker styles={{display: 'none'}}/>
             <CustomPicker styles={styles.picker} type="input"/>
             <ChangeButton/>
             <CustomPicker styles={styles.picker2} type="output" />

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import CrossButton from '../../components/cross_button';
 import Colors from '../../consts/colors'
 import axios from 'axios'
 import LanguagesHook from '../../hooks/language.hook';
+import Tts from 'react-native-tts';
+import SpeechToText from '../../components/speech_to_text'
+import Speaker from '../../assets/images/home/speaker.svg'
+import Mute from '../../assets/images/home/black-box.svg'
 
 const {darkPurple} = Colors;
 
@@ -12,8 +16,26 @@ const TranslateView = () => {
     const {useLanguageState, changeInput, changeOutput} = LanguagesHook();
     const {input_value, output_value} = useLanguageState();
 
-    const [value, onChangeText] = useState("");
+    const [input, setInput] = useState("");
     const [output, setOutput] = useState("");
+
+    const [isPlaying, setPlaying] = useState("")
+
+    const play = (type) => {
+        Tts.stop()
+        if(type === "input"){
+            Tts.setDefaultLanguage(input_value)
+            setPlaying(type)
+            Tts.speak(input)
+        }else {
+            Tts.setDefaultLanguage(output_value)
+            setPlaying(type)
+            Tts.speak(output)
+        }
+    }
+
+    Tts.addEventListener('tts-finish', () => setPlaying(""));
+    Tts.removeEventListener('tts-finish');
 
     //requests will be seperated later. They will not stay at a component
     const request = (text, lang) => {
@@ -33,11 +55,11 @@ const TranslateView = () => {
     
     useEffect(() => {
         input_value !== "detect" ?
-        request(value) : detectRequest(value);
-    }, [value, input_value, output_value])
+        request(input) : detectRequest(input);
+    }, [input, input_value, output_value])
 
     useEffect(() => {
-        if(value.length === 0 && output.length !== 0)
+        if(input.length === 0 && output.length !== 0)
             setOutput("")
     })
 
@@ -48,12 +70,24 @@ const TranslateView = () => {
                 <TextInput 
                     multiline={true}
                     placeholder="Type Something"
-                    onChangeText={text => onChangeText(text)}
-                    value={value}
+                    onChangeText={text => setInput(text)}
+                    value={input}
                     style={styles.input}
                 />
                 {
-                    value?.length > 0 ? (<CrossButton onClick={onChangeText}/>) : null
+                    input?.length > 0 ? (
+                    <View>
+                        <CrossButton onClick={setInput}/>
+                        <TouchableOpacity style={styles.speaker} onPress={() => play("input")}>
+                            {isPlaying !== "input" ? 
+                                <Speaker width={16} height={16} fill="black"/>
+                                :
+                                <Mute width={12} height={12} fill="black"/>
+                            }
+                        </TouchableOpacity>
+                    </View>
+                    ) 
+                    : null
                 }
             </View>
 
@@ -61,8 +95,23 @@ const TranslateView = () => {
 
             <View style={styles.outputView}>
                 <Text style={styles.output}>{output || "Waiting your input..."}</Text>
+                {
+                    output?.length > 0 ? (
+                    <View>
+                        <TouchableOpacity style={styles.speaker} onPress={() => play("output")}>
+                            {isPlaying !== "output" ? 
+                                <Speaker width={16} height={16} fill="black"/>
+                                :
+                                <Mute width={12} height={12} fill="black"/>
+                            }
+                        </TouchableOpacity>
+                    </View>
+                    ) 
+                    : null
+                }
             </View>
 
+            <SpeechToText language={input_value} setInput={setInput}/>
         </View>
     )
 }
@@ -91,6 +140,8 @@ const styles = StyleSheet.create({
         width: "90%",
     },
     outputView: {
+        flex: 0,
+        flexDirection: 'row',
         marginTop: 20,
     },
     output: {
@@ -99,6 +150,12 @@ const styles = StyleSheet.create({
         marginLeft: 4,
         width: "90%",
         color: darkPurple,
+    },
+    speaker: {
+        width: 44,
+        height: 44,
+        padding: 10,
+        marginTop: 10,
     },
   });
 

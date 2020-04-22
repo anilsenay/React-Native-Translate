@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         padding: 10,
         backgroundColor: lightPurple,
-        opacity: 0.3,
+        opacity: 0.5,
         transform: [{rotate: 0}]
     },
 

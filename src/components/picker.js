@@ -14,7 +14,6 @@ const CustomPicker = (props) => {
 
     const {input_value, output_value} = useLanguageState();
 
-    const [language, setLanguage] = useState();
     const containerStyle = {...props.styles, ...styles.container}
 
     return (

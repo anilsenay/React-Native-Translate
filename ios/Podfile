@@ -77,6 +77,11 @@ target 'TranslateApp' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+
+  pod 'react-native-voice', :path => '../node_modules/react-native-voice'
+
+  pod 'TextToSpeech', :path => '../node_modules/react-native-tts'
+
   target 'TranslateAppTests' do
     inherit! :complete
     # Pods for testing
