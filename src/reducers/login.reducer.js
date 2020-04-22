@@ -16,6 +16,11 @@ const loginReducer = (state, action) => {
                 ...state,
                 password: action.payload,
             };
+        case 'SET_RESET':
+            return {
+                email: "",
+                password: "",
+            };
         default:
             return state;
     }

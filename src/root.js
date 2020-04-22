@@ -7,7 +7,6 @@
  */
 import 'react-native-gesture-handler';
 import React from 'react';
-import { TouchableOpacity, Image } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -18,8 +17,8 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Search from './screens/search.screen';
 import Login from './screens/login.screen';
 import Register from './screens/register.screen';
-import auth from '@react-native-firebase/auth';
 import options from './navigation/navigation.options'
+import FlashMessage from "react-native-flash-message";
 
 const Stack = createStackNavigator();
 
@@ -35,8 +34,8 @@ const Root = () => {
         <Stack.Screen name="Login" component={Login} options={ loginOptions }/>
         <Stack.Screen name="Register" component={Register} options={ loginOptions }/>
         <Stack.Screen name="Search" component={Search} options={ options }/>
-
       </Stack.Navigator>
+      <FlashMessage canRegisterAsDefault={true} position="bottom" style={styles.popUp} titleStyle={{fontSize: 16}}/>
     </NavigationContainer>
   );
 };
@@ -84,7 +83,11 @@ const styles = StyleSheet.create({
   icon: {
     width: 24,
     height: 24,
-  }
+  },
+  popUp: {
+    alignItems: 'center', 
+    justifyContent: 'center'
+  },
 });
 
 export default Root;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {RegisterProvider} from '../contexts/register.context';
 import RegisterView from './register_views/register.view'
 

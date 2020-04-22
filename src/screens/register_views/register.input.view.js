@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import RegisterHook from '../../hooks/register.hook'

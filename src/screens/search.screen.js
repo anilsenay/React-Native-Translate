@@ -2,18 +2,23 @@ import React, { useEffect } from 'react';
 import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import LanguageView from './search_views/language.view'
 import TranslateView from './search_views/translate.view'
-import {LanguageContext, LanguageContextDispatch, LanguageProvider} from '../contexts/language.context'
-import FlashMessage, {showMessage, hideMessage} from "react-native-flash-message";
+import {LanguageProvider} from '../contexts/language.context'
 import Logout from '../assets/images/navigation/logout.png'
 import auth from '@react-native-firebase/auth';
+import {     
+  accountCreated,
+  loggedIn,
+  otherErrors,
+} from '../consts/messages'
 
 const Search = ({ route, navigation }) => {
 
   const logout = () => {
     auth()
     .signOut()
-    .then(() => console.log("logged out") );
-    navigation.navigate('Login')
+    .then(() => console.log("logged out") )
+    .catch(otherErrors());
+    navigation.navigate('Login', {showPopUp: "LOGOUT"})
   }
 
   navigation.setOptions({
@@ -24,29 +29,22 @@ const Search = ({ route, navigation }) => {
     )
   })
 
-  console.log((navigation))
+  console.log(`>${route.params.showPopUp}`)
   useEffect(() => {
     console.log(route.params)
     if(route.params?.showPopUp === "CREATED"){
-        showMessage({
-            message: "Account created!",
-            type: "success",
-          });
+        accountCreated();
     }
-    else if(route.params?.showPopUp === "LOGIN"){
-        showMessage({
-          message: "Logged in!",
-          type: "success",
-        });
+    if(route.params?.showPopUp === "LOGIN"){
+        loggedIn();
     }
-}, []);
+}, [route.params]);
 
   return (
     <LanguageProvider>
       <View style={styles.container}>
         <LanguageView />
         <TranslateView />
-        <FlashMessage position="bottom" style={styles.popUp} titleStyle={{fontSize: 16}}/>
       </View>
     </LanguageProvider>
   );

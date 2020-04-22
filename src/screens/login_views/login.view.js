@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
 import LoginButton from '../../components/login_button'
 import InputView from './input.view'
-import FlashMessage, {showMessage, hideMessage} from "react-native-flash-message";
 import LoginHook from '../../hooks/login.hook'
 import auth from '@react-native-firebase/auth';
+import {     
+    emptyString,
+    wrongPassword,
+    invalidEmail,
+    userNotFound,
+    otherErrors,
+    accountCreated,
+    logout,
+} from '../../consts/messages'
 
 const LoginView = ({ route, navigation }) => {
 
-    const {useLoginState, changeEmail, changePassword} = LoginHook();
+    const {useLoginState} = LoginHook();
     const {email, password} = useLoginState();
     
     const [initializing, setInitializing] = useState(true);
@@ -20,13 +28,12 @@ const LoginView = ({ route, navigation }) => {
     }
     
     useEffect(() => {
-        if(route.params?.showPopUp){
-            showMessage({
-                message: "Account created! You can login now!",
-                type: "success",
-              });
+        if(route.params?.showPopUp === "CREATED"){
+            accountCreated();
         }
-
+        if(route.params?.showPopUp === "LOGOUT"){
+            logout();
+        }
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
         return subscriber; // unsubscribe on unmount
     }, [route.params]);
@@ -34,25 +41,25 @@ const LoginView = ({ route, navigation }) => {
     if (initializing) return null;
 
     if (user) {
-        navigation.navigate('Search')
-        console.log("logged")
+        navigation.navigate('Search', {showPopUp: route.params?.showPopUp})
     }
 
-
     const loginEvent = () => {
+        if(email === "" || password === ""){
+            emptyString();
+        } else {
         auth().signInWithEmailAndPassword(email, password).then(() => navigation.navigate('Search',{showPopUp: "LOGIN"}))
             .catch(function(error) {
+                console.log(error.code)
                 // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                if (errorCode === 'auth/wrong-password') {
-                    alert('Wrong password.');
-                } else {
-                    alert(errorMessage);
+                switch(error.code) {
+                    case 'auth/wrong-password' : wrongPassword(); break;
+                    case 'auth/invalid-email' : invalidEmail(); break;
+                    case 'auth/user-not-found' : userNotFound(); break;
+                    default : otherErrors();
                 }
-                console.log(error);
             });
-        
+        }
     }
     const registerEvent = () => {
         navigation.navigate('Register')
@@ -72,7 +79,6 @@ const LoginView = ({ route, navigation }) => {
                 onClick={registerEvent}
                 reverse={true}
                 style={{marginBottom: 20}}/>
-            <FlashMessage position="bottom" style={styles.popUp} titleStyle={{fontSize: 16}}/>
         </View>
     )
 }

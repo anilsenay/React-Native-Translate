@@ -23,11 +23,18 @@ const LoginHook = () => {
             payload: value,
         })
     };
+    const resetLogin = (value) => {
+        loginDispatch({
+            type: 'SET_RESET',
+            payload: value,
+        })
+    };
 
     return {
         useLoginState,
         changeEmail,
         changePassword,
+        resetLogin,
     };
 }
 
