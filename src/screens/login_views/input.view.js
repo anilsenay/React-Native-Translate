@@ -1,14 +1,29 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
+import LoginHook from '../../hooks/login.hook'
 
 const InputView = () => {
+
+    const {useLoginState, changeEmail, changePassword} = LoginHook();
+    const {email, password} = useLoginState();
+
     return (
         <View style={styles.container}>
             <Text style={styles.label}>E-mail</Text>
-            <TextInput label='Email' placeholder='example@gmail.com' style={styles.input}/>
+            <TextInput 
+                label='Email' 
+                placeholder='example@gmail.com' 
+                style={styles.input} 
+                onChangeText={text => {changeEmail(text); console.log(useLoginState)}} />
+
             <Text style={styles.label}>Password</Text>
-            <TextInput label='Password' secureTextEntry={true} style={styles.input}/>
+            <TextInput 
+                label='Password' 
+                placeholder='' 
+                secureTextEntry={true} 
+                style={styles.input}
+                onChangeText={text => {changePassword(text); console.log(useLoginState)}} />
         </View>
     )
 }

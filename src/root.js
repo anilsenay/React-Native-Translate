@@ -7,48 +7,28 @@
  */
 import 'react-native-gesture-handler';
 import React from 'react';
-import { Button, TouchableOpacity, Image } from 'react-native'
+import { TouchableOpacity, Image } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import Search from './screens/search.screen';
 import Login from './screens/login.screen';
 import Register from './screens/register.screen';
-import Settings from './assets/images/navigation/settings.png'
+import auth from '@react-native-firebase/auth';
+import options from './navigation/navigation.options'
 
 const Stack = createStackNavigator();
 
-const options = {
-  title: 'Translate',
-  headerTitleAlign: 'center',
-  headerTransparent: true,
-  headerRight: () => (
-    <TouchableOpacity style={styles.optionsButton}><Image source={ Settings } style={styles.dots}/></TouchableOpacity>
-  )
-}
-
-const loginOptions = {
-  headerShown: false
-}
-
 const Root = () => {
+
+  const loginOptions = {
+    headerShown: false
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -101,10 +81,9 @@ const styles = StyleSheet.create({
   optionsButton: {
     padding: 16,
   },
-  dots: {
+  icon: {
     width: 24,
     height: 24,
-    
   }
 });
 

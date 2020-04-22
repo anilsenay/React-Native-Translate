@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>106088815549-dqc128o0j9l7b0eufp7ft974h2rmjeap.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.106088815549-dqc128o0j9l7b0eufp7ft974h2rmjeap</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBCJCAqda9UYdVSQ6gbohmMdOVy6rN6n5g</string>
+	<key>GCM_SENDER_ID</key>
+	<string>106088815549</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.translateapp</string>
+	<key>PROJECT_ID</key>
+	<string>trasnlator-7f5d7</string>
+	<key>STORAGE_BUCKET</key>
+	<string>trasnlator-7f5d7.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:106088815549:ios:086d974c5da7c3c654d0d4</string>
+	<key>DATABASE_URL</key>
+	<string>https://trasnlator-7f5d7.firebaseio.com</string>
+</dict>
+</plist>

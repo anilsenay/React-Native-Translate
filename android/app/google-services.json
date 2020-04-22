@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "106088815549",
+    "firebase_url": "https://trasnlator-7f5d7.firebaseio.com",
+    "project_id": "trasnlator-7f5d7",
+    "storage_bucket": "trasnlator-7f5d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106088815549:android:4f98678116c45a1054d0d4",
+        "android_client_info": {
+          "package_name": "com.translateapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106088815549-niahvvckeb3rvg6q6no4kb0hf9vrc8bi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0sbu708ISP37AXxC4wSxH-nCZ08KwRdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106088815549-niahvvckeb3rvg6q6no4kb0hf9vrc8bi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
