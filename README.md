@@ -11,5 +11,5 @@ Used in project:
 - React Native TTS (Text to Speech)
 - React Native Voice (Speech to Text)
 
-(Photos will be added here)
+![img4](https://i.ibb.co/HXtG712/translate2.jpg)
 
