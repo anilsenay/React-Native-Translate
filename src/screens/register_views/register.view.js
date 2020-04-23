@@ -13,6 +13,7 @@ import {
     passwordNotMatch,
     emptyString,
 } from '../../consts/messages'
+import Colors from '../../consts/colors'
 
 const RegisterView = ({ navigation }) => {
 
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
         height: 44,
         padding: 10,
         borderBottomWidth: 1,
-        borderColor: '#A56FF8',
+        borderColor: Colors.buttonPurple,
         marginBottom: 10,
     },
     image:{

@@ -16,9 +16,9 @@ const Search = ({ route, navigation }) => {
   const logout = () => {
     auth()
     .signOut()
-    .then(() => console.log("logged out") )
+    .then(() =>   navigation.push('Login', {showPopUp: "LOGOUT"}))
     .catch(otherErrors());
-    navigation.navigate('Login', {showPopUp: "LOGOUT"})
+ 
   }
 
   navigation.setOptions({

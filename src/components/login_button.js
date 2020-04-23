@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native'
+import Colors from '../consts/colors'
 
 const LoginButton = (props) => {
 
@@ -26,10 +27,10 @@ const styles = StyleSheet.create({
     },
     no_reverse: {
         backgroundColor: 'white',
-        borderColor: '#A56FF8',
+        borderColor: Colors.buttonPurple,
     },
     reverse: {
-        backgroundColor: '#A56FF8',
+        backgroundColor: Colors.buttonPurple,
         borderColor: 'white',
     },
     textView: {
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     text: {
-        color: '#A56FF8',
+        color: Colors.buttonPurple,
         fontSize: 16,
     },
     text_reverse: {

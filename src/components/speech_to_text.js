@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity,KeyboardAvoidingView} from 'react-native'
 import Voice from '@react-native-community/voice';
 import Microphone from '../assets/images/home/microphone.svg'
+import Colors from '../consts/colors'
 
 function SpeechToText({language, setInput}) {
     useEffect(() => {
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#A56FF8',
+        backgroundColor: Colors.buttonPurple,
         height: 60,
         width: 60,
         borderRadius: 100,

@@ -6,6 +6,7 @@ const Colors = {
     lightPurple: '#ede7f6',
     textPurple: '#9575cd',
     darkPurple: '#7e57c2',
+    buttonPurple: '#A56FF8',
   };
   
   export default Colors;

@@ -13,6 +13,7 @@ import {
     accountCreated,
     logout,
 } from '../../consts/messages'
+import Colors from '../../consts/colors'
 
 const LoginView = ({ route, navigation }) => {
 
@@ -34,7 +35,7 @@ const LoginView = ({ route, navigation }) => {
         if(route.params?.showPopUp === "LOGOUT"){
             logout();
         }
-        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        const subscriber = auth().onAuthStateChanged(onAuthStateChanged)
         return subscriber; // unsubscribe on unmount
     }, [route.params]);
     
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
         height: 44,
         padding: 10,
         borderBottomWidth: 1,
-        borderColor: '#A56FF8',
+        borderColor: Colors.buttonPurple,
         marginBottom: 10,
     },
     image:{
