@@ -4,12 +4,12 @@ This is my first React Native app. I do not have MacOs so I could not test on IO
 So please run it on Android for better use experience.
 
 Used in project:
--React Native
--React Navigator
--Yandex Translate API
--Firebase 
--React Native TTS (Text to Speech)
--React Native Voice (Speech to Text)
+- React Native
+- React Navigator
+- Yandex Translate API
+- Firebase 
+- React Native TTS (Text to Speech)
+- React Native Voice (Speech to Text)
 
 (Photos will be added here)
 
