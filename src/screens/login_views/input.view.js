@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 0,
         borderBottomWidth: 1,
         borderColor: Colors.buttonPurple,
-        marginBottom: 30,
+        marginBottom: 25,
     },
     label:{
         color: 'grey',

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Image } from 'react-native'
+import { View, StyleSheet, Image, SafeAreaView, Dimensions } from 'react-native'
 import LoginButton from '../../components/login_button'
 import InputView from './register.input.view'
 import HaveAccountView from './have_account.view'
@@ -51,8 +51,8 @@ const RegisterView = ({ navigation }) => {
     }
 
     return (
-        <View style={styles.container}>
-            <Image source={require('../../assets/images/login/translate.png')} style={styles.image} resizeMode='contain'/>
+        <SafeAreaView style={styles.container}>
+            <Image source={require('../../assets/images/login/pluto-unsubscribed.png')} style={styles.image} resizeMode='contain'/>
             <InputView />
             <LoginButton 
                 text="Create new account" 
@@ -60,7 +60,7 @@ const RegisterView = ({ navigation }) => {
                 reverse={true} 
                 style={{margin: 0}}/>
             <HaveAccountView onClick={goLogin}/>
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -81,7 +81,11 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     image:{
-        flex:1,
+        marginTop: 15,
+        marginBottom: 20,
+        resizeMode: 'contain',
+        width: Dimensions.get('window').width * 0.8,
+        height: Dimensions.get('window').width * 0.6,
     },
     popUp: {
         alignItems: 'center', 

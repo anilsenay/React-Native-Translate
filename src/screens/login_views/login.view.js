@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, StyleSheet, Image } from 'react-native'
+import { View, StyleSheet, Image, Dimensions, SafeAreaView, ScrollView } from 'react-native'
 import LoginButton from '../../components/login_button'
 import InputView from './input.view'
 import LoginHook from '../../hooks/login.hook'
@@ -67,20 +67,20 @@ const LoginView = ({ route, navigation }) => {
     }
 
     return (
-        <View style={styles.container}>
-            <Image source={require('../../assets/images/login/translate.png')} style={styles.image} resizeMode='contain'/>
+        <SafeAreaView style={styles.container}>
+            <Image source={require('../../assets/images/login/pluto-bad-gateway.png')} style={styles.image} />
             <InputView/>
             <LoginButton 
                 text="Login"
                 onClick={loginEvent}
                 reverse={false}
-                style={{marginBottom: 10}}/>
+                style={{marginBottom: 15}}/>
             <LoginButton 
                 text="Create new account" 
                 onClick={registerEvent}
                 reverse={true}
                 style={{marginBottom: 20}}/>
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -101,7 +101,11 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     image:{
-        flex:1,
+        marginTop: 15,
+        marginBottom: 20,
+        resizeMode: 'contain',
+        width: Dimensions.get('window').width * 0.8,
+        height: Dimensions.get('window').width * 0.6,
     },
     popUp: {
         alignItems: 'center', 

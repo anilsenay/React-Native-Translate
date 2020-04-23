@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
 import LanguageView from './search_views/language.view'
 import TranslateView from './search_views/translate.view'
 import {LanguageProvider} from '../contexts/language.context'
@@ -19,6 +19,10 @@ const Search = ({ route, navigation }) => {
     .then(() =>   navigation.push('Login', {showPopUp: "LOGOUT"}))
     .catch(otherErrors());
  
+  }
+
+  const setDarkMode = () => {
+    
   }
 
   navigation.setOptions({
@@ -42,10 +46,10 @@ const Search = ({ route, navigation }) => {
 
   return (
     <LanguageProvider>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <LanguageView />
         <TranslateView />
-      </View>
+      </SafeAreaView>
     </LanguageProvider>
   );
 };
