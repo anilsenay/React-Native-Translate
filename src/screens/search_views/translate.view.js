@@ -8,12 +8,18 @@ import Tts from 'react-native-tts';
 import SpeechToText from '../../components/speech_to_text'
 import Speaker from '../../assets/images/home/speaker.svg'
 import Mute from '../../assets/images/home/black-box.svg'
+import {removeData, storeData} from '../../requests/storeage.requests'
+import AddFavorite from '../../components/add_favorite'
+import {     
+    favorited,
+    removeFavorite,
+} from '../../consts/messages'
 
 const {darkPurple} = Colors;
 
 const TranslateView = () => {
-
-    const {useLanguageState, changeInput, changeOutput} = LanguagesHook();
+    
+    const {useLanguageState} = LanguagesHook();
     const {input_value, output_value} = useLanguageState();
 
     const [input, setInput] = useState("");
@@ -52,7 +58,7 @@ const TranslateView = () => {
             request(text, result.data.lang)
         }).catch(e => {});
     }
-    
+
     useEffect(() => {
         input_value !== "detect" ?
         request(input) : detectRequest(input);
@@ -62,6 +68,15 @@ const TranslateView = () => {
         if(input.length === 0 && output.length !== 0)
             setOutput("")
     })
+
+    const favoriteEvent = () => {
+        favorited();
+        storeData(input, output);
+    }
+    const removeFavoriteEvent = () => {
+        removeFavorite();
+        removeData(input, output);
+    }
 
     return (
         <View style={styles.container}>
@@ -97,7 +112,7 @@ const TranslateView = () => {
                 <Text style={styles.output}>{output || "Waiting your input..."}</Text>
                 {
                     output?.length > 0 ? (
-                    <View>
+                    <View >
                         <TouchableOpacity style={styles.speaker} onPress={() => play("output")}>
                             {isPlaying !== "output" ? 
                                 <Speaker width={16} height={16} fill="black"/>
@@ -105,6 +120,7 @@ const TranslateView = () => {
                                 <Mute width={12} height={12} fill="black"/>
                             }
                         </TouchableOpacity>
+                        <AddFavorite set={favoriteEvent} remove={removeFavoriteEvent}/>
                     </View>
                     ) 
                     : null
@@ -148,6 +164,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         paddingBottom: 48,
         marginLeft: 4,
+        marginRight: -4,
         width: "90%",
         color: darkPurple,
     },

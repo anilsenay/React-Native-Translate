@@ -1,27 +1,33 @@
 import React, { useEffect } from 'react';
-import {View, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
+import {View, StyleSheet, Image, TouchableOpacity, SafeAreaView, AsyncStorage} from 'react-native';
 import LanguageView from './search_views/language.view'
 import TranslateView from './search_views/translate.view'
 import {LanguageProvider} from '../contexts/language.context'
 import Logout from '../assets/images/navigation/logout.png'
+import Favorited from '../assets/images/navigation/favorited.png'
 import auth from '@react-native-firebase/auth';
 import {     
   accountCreated,
   loggedIn,
   otherErrors,
 } from '../consts/messages'
+import {retrieveData, storeData} from '../requests/storeage.requests'
 
 const Search = ({ route, navigation }) => {
-
+  
   const logout = () => {
     auth()
     .signOut()
-    .then(() =>   navigation.push('Login', {showPopUp: "LOGOUT"}))
+    .then(() => navigation.push('Login', {showPopUp: "LOGOUT"}))
     .catch(otherErrors());
- 
   }
 
   navigation.setOptions({
+    headerRight: () => (
+      <TouchableOpacity style={styles.optionsButton} onPress={() => navigation.push('Favorited')}>
+        <Image source={ Favorited } style={styles.icon}/>
+      </TouchableOpacity>
+    ),
     headerLeft: () => (
       <TouchableOpacity style={styles.optionsButton} onPress={logout}>
         <Image source={ Logout } style={styles.icon}/>

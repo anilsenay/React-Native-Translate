@@ -77,6 +77,20 @@ const logout = () => {
       });
 }
 
+const favorited = () => {
+    showMessage({
+        message: "Added to favorites",
+        type: "success",
+      });
+}
+
+const removeFavorite = () => {
+    showMessage({
+        message: "Remove from favorites",
+        type: "danger",
+      });
+}
+
 export {
     emptyString,
     wrongPassword,
@@ -89,4 +103,6 @@ export {
     passwordNotMatch,
     loggedIn,
     logout,
+    favorited,
+    removeFavorite,
 }

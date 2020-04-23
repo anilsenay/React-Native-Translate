@@ -15,7 +15,22 @@ const languages = [
         value: "de",
         label: "German"
     },
-
+    {
+        value: "es",
+        label: "Spanish"
+    },
+    {
+        value: "it",
+        label: "Italian"
+    },
+    {
+        value: "pl",
+        label: "Polish"
+    },
+    {
+        value: "ru",
+        label: "Russian"
+    },
 ]
 
 export default languages;
