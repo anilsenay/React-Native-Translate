@@ -21,10 +21,6 @@ const Search = ({ route, navigation }) => {
  
   }
 
-  const setDarkMode = () => {
-    
-  }
-
   navigation.setOptions({
     headerLeft: () => (
       <TouchableOpacity style={styles.optionsButton} onPress={logout}>

@@ -3,13 +3,6 @@ import { TouchableOpacity, Image } from 'react-native'
 import Settings from '../assets/images/navigation/settings.png'
 import Logout from '../assets/images/navigation/logout.png'
 
-const logout = (navigation) => {
-    auth()
-    .signOut()
-    .then(() => console.log("logged out") );
-    navigation.navigate('Login')
-} 
-
 const options = {
     title: 'Translate',
     headerTitleAlign: 'center',
