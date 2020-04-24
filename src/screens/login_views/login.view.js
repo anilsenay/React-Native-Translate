@@ -67,20 +67,22 @@ const LoginView = ({ route, navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
-            <Image source={require('../../assets/images/login/pluto-bad-gateway.png')} style={styles.image} />
-            <InputView/>
-            <LoginButton 
-                text="Login"
-                onClick={loginEvent}
-                reverse={false}
-                style={{marginBottom: 15}}/>
-            <LoginButton 
-                text="Create new account" 
-                onClick={registerEvent}
-                reverse={true}
-                style={{marginBottom: 20}}/>
-        </SafeAreaView>
+        <ScrollView showsVerticalScrollIndicator={false}>
+            <SafeAreaView style={styles.container}>
+                <Image source={require('../../assets/images/login/pluto-bad-gateway.png')} style={styles.image} />
+                <InputView/>
+                <LoginButton 
+                    text="Login"
+                    onClick={loginEvent}
+                    reverse={false}
+                    style={{marginBottom: 15}}/>
+                <LoginButton 
+                    text="Create new account" 
+                    onClick={registerEvent}
+                    reverse={true}
+                    style={{marginBottom: 20}}/>
+            </SafeAreaView>
+        </ScrollView>
     )
 }
 

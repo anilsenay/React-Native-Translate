@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import CrossButton from '../../components/cross_button';
 import Colors from '../../consts/colors'
 import axios from 'axios'
@@ -79,56 +79,59 @@ const TranslateView = () => {
     }
 
     return (
+        
         <View style={styles.container}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.inputView}>
+                    <TextInput 
+                        multiline={true}
+                        placeholder="Type Something"
+                        onChangeText={text => setInput(text)}
+                        value={input}
+                        style={styles.input}
+                    />
+                    {
+                        input?.length > 0 ? (
+                        <View>
+                            <CrossButton onClick={setInput}/>
+                            <TouchableOpacity style={styles.speaker} onPress={() => play("input")}>
+                                {isPlaying !== "input" ? 
+                                    <Speaker width={16} height={16} fill="black"/>
+                                    :
+                                    <Mute width={12} height={12} fill="black"/>
+                                }
+                            </TouchableOpacity>
+                        </View>
+                        ) 
+                        : null
+                    }
+                </View>
 
-            <View style={styles.inputView}>
-                <TextInput 
-                    multiline={true}
-                    placeholder="Type Something"
-                    onChangeText={text => setInput(text)}
-                    value={input}
-                    style={styles.input}
-                />
-                {
-                    input?.length > 0 ? (
-                    <View>
-                        <CrossButton onClick={setInput}/>
-                        <TouchableOpacity style={styles.speaker} onPress={() => play("input")}>
-                            {isPlaying !== "input" ? 
-                                <Speaker width={16} height={16} fill="black"/>
-                                :
-                                <Mute width={12} height={12} fill="black"/>
-                            }
-                        </TouchableOpacity>
-                    </View>
-                    ) 
-                    : null
-                }
-            </View>
+                <View style={styles.line}/>
 
-            <View style={styles.line}/>
-
-            <View style={styles.outputView}>
-                <Text style={styles.output}>{output || "Waiting your input..."}</Text>
-                {
-                    output?.length > 0 ? (
-                    <View >
-                        <TouchableOpacity style={styles.speaker} onPress={() => play("output")}>
-                            {isPlaying !== "output" ? 
-                                <Speaker width={16} height={16} fill="black"/>
-                                :
-                                <Mute width={12} height={12} fill="black"/>
-                            }
-                        </TouchableOpacity>
-                        <AddFavorite set={favoriteEvent} remove={removeFavoriteEvent}/>
-                    </View>
-                    ) 
-                    : null
-                }
-            </View>
+                <View style={styles.outputView}>
+                    <Text style={styles.output}>{output || "Waiting your input..."}</Text>
+                    {
+                        output?.length > 0 ? (
+                        <View >
+                            <TouchableOpacity style={styles.speaker} onPress={() => play("output")}>
+                                {isPlaying !== "output" ? 
+                                    <Speaker width={16} height={16} fill="black"/>
+                                    :
+                                    <Mute width={12} height={12} fill="black"/>
+                                }
+                            </TouchableOpacity>
+                            <AddFavorite set={favoriteEvent} remove={removeFavoriteEvent}/>
+                        </View>
+                        ) 
+                        : null
+                    }
+                </View>
+            </ScrollView>
 
             <SpeechToText language={input_value} setInput={setInput}/>
         </View>
+
     )
 }
 

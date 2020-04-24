@@ -11,7 +11,6 @@ import {
   loggedIn,
   otherErrors,
 } from '../consts/messages'
-import {retrieveData, storeData} from '../requests/storeage.requests'
 
 const Search = ({ route, navigation }) => {
   
@@ -62,10 +61,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 70,
     backgroundColor: 'white',
-  },
-  popUp: {
-    alignItems: 'center', 
-    justifyContent: 'center'
   },
   optionsButton: {
     padding: 16,

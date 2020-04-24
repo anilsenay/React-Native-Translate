@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Image, SafeAreaView, Dimensions } from 'react-native'
+import { ScrollView, StyleSheet, Image, SafeAreaView, Dimensions } from 'react-native'
 import LoginButton from '../../components/login_button'
 import InputView from './register.input.view'
 import HaveAccountView from './have_account.view'
@@ -51,16 +51,18 @@ const RegisterView = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
-            <Image source={require('../../assets/images/login/pluto-unsubscribed.png')} style={styles.image} resizeMode='contain'/>
-            <InputView />
-            <LoginButton 
-                text="Create new account" 
-                onClick={() => createdAccount()}
-                reverse={true} 
-                style={{margin: 0}}/>
-            <HaveAccountView onClick={goLogin}/>
-        </SafeAreaView>
+        <ScrollView showsVerticalScrollIndicator={false}>
+            <SafeAreaView style={styles.container}>
+                <Image source={require('../../assets/images/login/pluto-unsubscribed.png')} style={styles.image} resizeMode='contain'/>
+                <InputView />
+                <LoginButton 
+                    text="Create new account" 
+                    onClick={() => createdAccount()}
+                    reverse={true} 
+                    style={{margin: 0}}/>
+                <HaveAccountView onClick={goLogin}/>
+            </SafeAreaView>
+        </ScrollView>
     )
 }
 
