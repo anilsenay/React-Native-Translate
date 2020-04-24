@@ -8,7 +8,6 @@ function SpeechToText({language, setInput}) {
     useEffect(() => {
         const onSpeechResults = (e) => {
             setInput(e.value[0])
-            console.log(e.value);
         };
         Voice.onSpeechResults = onSpeechResults;
         return () => {
@@ -17,7 +16,6 @@ function SpeechToText({language, setInput}) {
     }, []);
 
     const startVoice = async () => {
-        console.log("clicked")
         try {
             await Voice.start(language);
         } catch (e) {

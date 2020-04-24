@@ -34,9 +34,7 @@ const Search = ({ route, navigation }) => {
     )
   })
 
-  console.log(`>${route.params.showPopUp}`)
   useEffect(() => {
-    console.log(route.params)
     if(route.params?.showPopUp === "CREATED"){
         accountCreated();
     }

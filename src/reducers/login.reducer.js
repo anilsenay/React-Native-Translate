@@ -4,7 +4,6 @@ const loginInitialState = {
 }
 
 const loginReducer = (state, action) => {
-    console.log('state, action', state, action);
     switch(action.type) {
         case 'SET_EMAIL':
             return {

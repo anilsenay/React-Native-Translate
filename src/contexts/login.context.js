@@ -12,7 +12,6 @@ const LoginProvider = ({children}) => {
         loginReducer,
         loginInitialState,
     );
-    console.log(loginState)
 
     return (
         <LoginContext.Provider

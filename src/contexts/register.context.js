@@ -12,7 +12,6 @@ const RegisterProvider = ({children}) => {
         registerReducer,
         registerInitialState,
     );
-    console.log(registerState)
 
     return (
         <RegisterContext.Provider

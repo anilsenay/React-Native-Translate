@@ -8,7 +8,6 @@ const retrieveData = async () => {
               // get at each store's key/value so you can work with it
               let key = store[i][0];
               let value = store[i][1];
-              console.log(key + " " + value)
             });
           });
         });
@@ -29,7 +28,7 @@ const storeData = async (input, output) => {
 try {
     await AsyncStorage.setItem(input+""+output, JSON.stringify({input,output}));
 } catch (error) {
-    console.log("error")
+    console.log(error)
 }
 };
 

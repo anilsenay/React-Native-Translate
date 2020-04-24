@@ -35,7 +35,6 @@ const RegisterView = ({ navigation }) => {
 
             auth().createUserWithEmailAndPassword(email, password)
                 .then(() => {
-                    console.log('User account created & signed in!');
                     navigation.navigate('Login', {showPopUp: "CREATED"})
                 })
                 .catch(function(error) {
